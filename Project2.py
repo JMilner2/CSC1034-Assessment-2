@@ -9,7 +9,7 @@ class Contact:
         return f"{self.name}:" \
                f" address={self.address}, phone number={self.number}, birthdate={self.birthdate}"
 
-    def search_contact(self,contact_detail,number):
+    def search_contact(self, contact_detail, number):
         if number == "1":
             if self.name == contact_detail:
                 print(self.displayinfo())
@@ -25,6 +25,12 @@ class Contact:
         else:
             print("INVALID CHOICE MADE")
 
+    def change_contact_details(self):
+        self.name = input("ENTER A NAME FOR CONTACT: ")
+        self.address = input("ENTER AN ADDRESS FOR CONTACT: ")
+        self.number = input("ENTER AN ADDRESS FOR CONTACT: ")
+        self.birthdate = input("ENTER A DATE OF BIRTH FOR CONTACT(XX/XX/XXXX): ")
+
 
 def get_contact_details():
     f = open("Contacts.txt", "r")
@@ -39,9 +45,25 @@ def create_contact(contacts, i):
     return c
 
 
+def edit_contact(contacts_list):
+    print("WHICH CONTACT WOULD YOU LIKE TO EDIT:")
+    for i in contacts_list:
+        print(i + " = " + contacts_list[i].displayinfo())
+    contact_to_edit = input("PLEASE CHOOSE A CONTACT TO EDIT(E.G. c1,c2)\n"
+                            "CHOICE: ")
+    contacts_list[contact_to_edit].change_contact_details()
+
+
+def add_new_contact(contacts_list):  # NEEDS TO BE DONE TOMORROW
+    pass
+
+
+def update_contacts_list():  # NEEDS TO BE DONE TOMORROW
+    pass
+
+
 contactslist = get_contact_details()
 contacts_dic = {"c" + str(x): create_contact(contactslist, x) for x in range(len(contactslist))}
-print(contacts_dic["c1"].displayinfo())
 
 while True:
     user_choice = 0
@@ -69,5 +91,17 @@ while True:
                        "CHOICE = ")
         userinfo = input("ENTER : ")
         for i in contacts_dic:
-            contacts_dic[i].search_contact(userinfo,choice)
+            contacts_dic[i].search_contact(userinfo, choice)
 
+    elif user_choice == "2":
+        for i in contacts_dic:
+            print(contacts_dic[i].displayinfo())
+
+    elif user_choice == "3":
+        edit_contact(contacts_dic)
+
+    elif user_choice == "4":
+        add_new_contact(contacts_dic)
+
+    elif user_choice == "5":
+        pass
