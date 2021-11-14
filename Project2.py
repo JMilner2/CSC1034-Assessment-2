@@ -9,6 +9,22 @@ class Contact:
         return f"{self.name}:" \
                f" address={self.address}, phone number={self.number}, birthdate={self.birthdate}"
 
+    def search_contact(self,contact_detail,number):
+        if number == "1":
+            if self.name == contact_detail:
+                print(self.displayinfo())
+        elif number == "2":
+            if self.address == contact_detail:
+                print(self.displayinfo())
+        elif number == "3":
+            if self.number == contact_detail:
+                print(self.displayinfo())
+        elif number == "4":
+            if self.birthdate == contact_detail:
+                print(self.displayinfo())
+        else:
+            print("INVALID CHOICE MADE")
+
 
 def get_contact_details():
     f = open("Contacts.txt", "r")
@@ -21,10 +37,6 @@ def create_contact(contacts, i):
     contact = contacts[i].split(", ")
     c = Contact(contact[0], contact[1], contact[2], contact[3])
     return c
-
-
-def search_contact(contacts):
-    pass
 
 
 contactslist = get_contact_details()
@@ -48,5 +60,14 @@ while True:
         except ValueError:
             print("ONLY ENTER THE NUMBER FOR WHAT YOU WANT TO DO")
 
-    if user_choice == 1:
-        search_contact(contacts_dic)
+    if user_choice == "1":
+        choice = input("WHAT DO YOU WANT TO SEARCH BY?:\n"
+                       "1 = NAME\n"
+                       "2= ADDRESS\n"
+                       "3= PHONE NUMBER\n"
+                       "4 = DOB\n"
+                       "CHOICE = ")
+        userinfo = input("ENTER : ")
+        for i in contacts_dic:
+            contacts_dic[i].search_contact(userinfo,choice)
+
