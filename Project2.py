@@ -31,6 +31,12 @@ class Contact:
         self.number = input("ENTER AN ADDRESS FOR CONTACT: ")
         self.birthdate = input("ENTER A DATE OF BIRTH FOR CONTACT(XX/XX/XXXX): ")
 
+    def save_contact(self):
+        file = open("Contacts.txt","a")
+        contact_details = ("\n" + self.name + ", " + self.address + ", " + self.number + ", " + self.birthdate)
+        file.write(contact_details)
+        file.close()
+
 
 def get_contact_details():
     f = open("Contacts.txt", "r")
@@ -54,18 +60,22 @@ def edit_contact(contacts_list):
     contacts_list[contact_to_edit].change_contact_details()
 
 
-def add_new_contact(contacts_list):  # NEEDS TO BE DONE TOMORROW
-    pass
+def add_new_contact(contacts_list):  # NEEDS TO BE DONE
+    name = input("New contacts name: ")
+    address = input("New contacts address: ")
+    number = input("New contacts number: ")
+    dob = input("New contacts date of birth(xx/xx/xxxx): ")
+    new_contact = Contact(name,address,number,dob)
+    new_contact.save_contact()
 
 
 def update_contacts_list():  # NEEDS TO BE DONE TOMORROW
     pass
 
 
-contactslist = get_contact_details()
-contacts_dic = {"c" + str(x): create_contact(contactslist, x) for x in range(len(contactslist))}
-
 while True:
+    contactslist = get_contact_details()
+    contacts_dic = {"c" + str(x): create_contact(contactslist, x) for x in range(len(contactslist))}
     user_choice = 0
     user_input = False
     while not user_input:
