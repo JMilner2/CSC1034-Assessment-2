@@ -25,15 +25,15 @@ class Contact:
         else:
             print("INVALID CHOICE MADE")
 
-    def change_contact_details(self):
+    def change_contact_details(self):  # NEEDS VALIDATION AND ERROR CHECKING
         self.name = input("ENTER A NAME FOR CONTACT: ")
         self.address = input("ENTER AN ADDRESS FOR CONTACT: ")
-        self.number = input("ENTER AN ADDRESS FOR CONTACT: ")
+        self.number = input("ENTER A PHONE NUMBER FOR CONTACT: ")
         self.birthdate = input("ENTER A DATE OF BIRTH FOR CONTACT(XX/XX/XXXX): ")
 
     def save_contact(self):
         file = open("Contacts.txt","a")
-        contact_details = ("\n" + self.name + ", " + self.address + ", " + self.number + ", " + self.birthdate)
+        contact_details = (self.name + ", " + self.address + ", " + self.number + ", " + self.birthdate + "\n")
         file.write(contact_details)
         file.close()
 
@@ -41,6 +41,9 @@ class Contact:
 def get_contact_details():
     f = open("Contacts.txt", "r")
     contacts = f.readlines()
+    for contact in contacts:
+        if contact == "\n":
+            contacts.remove(contact)
     f.close()
     return contacts
 
@@ -55,13 +58,13 @@ def edit_contact(contacts_list):
     print("WHICH CONTACT WOULD YOU LIKE TO EDIT:")
     for i in contacts_list:
         print(i + " = " + contacts_list[i].displayinfo())
-    contact_to_edit = input("PLEASE CHOOSE A CONTACT TO EDIT(E.G. c1,c2)\n"
+    contact_to_edit = input("PLEASE CHOOSE A CONTACT TO EDIT(E.G. c1,c2)\n"  # NEEDS VALIDATION AND ERROR CHECKING
                             "CHOICE: ")
     contacts_list[contact_to_edit].change_contact_details()
 
 
-def add_new_contact(contacts_list):  # NEEDS TO BE DONE
-    name = input("New contacts name: ")
+def add_new_contact():
+    name = input("New contacts name: ")  # NEEDS VALIDATION AND ERROR CHECKING
     address = input("New contacts address: ")
     number = input("New contacts number: ")
     dob = input("New contacts date of birth(xx/xx/xxxx): ")
@@ -69,8 +72,12 @@ def add_new_contact(contacts_list):  # NEEDS TO BE DONE
     new_contact.save_contact()
 
 
-def update_contacts_list():  # NEEDS TO BE DONE TOMORROW
-    pass
+def update_contacts_list(contacts_list):
+    file = open("Contacts.txt", "w")
+    file.write("")
+    file.close()
+    for i in contacts_list:
+        contacts_list[i].save_contact()
 
 
 while True:
@@ -111,7 +118,15 @@ while True:
         edit_contact(contacts_dic)
 
     elif user_choice == "4":
-        add_new_contact(contacts_dic)
+        add_new_contact()
+        contactslist = get_contact_details()
+        contacts_dic = {"c" + str(x): create_contact(contactslist, x) for x in range(len(contactslist))}
 
     elif user_choice == "5":
-        pass
+        update_contacts_list(contacts_dic)
+        break
+
+    else:
+        print("INVALID CHOICE")
+    update_contacts_list(contacts_dic)
+
