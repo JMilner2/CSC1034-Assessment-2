@@ -60,7 +60,11 @@ def edit_contact(contacts_list):
         print(i + " = " + contacts_list[i].displayinfo())
     contact_to_edit = input("PLEASE CHOOSE A CONTACT TO EDIT(E.G. c1,c2)\n"  # NEEDS VALIDATION AND ERROR CHECKING
                             "CHOICE: ")
-    contacts_list[contact_to_edit].change_contact_details()
+    try:
+        contacts_list[contact_to_edit].change_contact_details()
+
+    except KeyError:
+        print("INVALID CHOICE MADE")
 
 
 def add_new_contact():
@@ -100,7 +104,7 @@ while True:
             print("ONLY ENTER THE NUMBER FOR WHAT YOU WANT TO DO")
 
     if user_choice == "1":
-        choice = input("WHAT DO YOU WANT TO SEARCH BY?:\n"
+        choice = input("WHAT DO YOU WANT TO SEARCH BY?:\n"  # NEEDS VALIDATION CHECKS
                        "1 = NAME\n"
                        "2= ADDRESS\n"
                        "3= PHONE NUMBER\n"
