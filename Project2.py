@@ -1,18 +1,25 @@
 class Contact:
-    def __init__(self, name, address, number, birthdate):  # Constructor for Contact class
+    def __init__(self, name, address, number, birthdate):
+        """Constructor for Contact class
+        """
         self.name = name
         self.address = address
         self.number = number
         self.birthdate = birthdate
 
-    def displayinfo(self):  # Returns a formatted version of the client class
+    def displayinfo(self):
+        """Returns a formatted version of the client class
+        """
         return f"{self.name}:" \
                f" address={self.address}, phone number={self.number}, birthdate={self.birthdate}"
 
-    def search_contact(self, contact_detail, number):  # Searches contact for completely matching details
+    def search_contact(self, contact_detail, number):
+        """Searches contact for completely matching details
+        Displays contact info if there is a match
+        """
         if number == "1":
             if self.name == contact_detail:
-                print(self.displayinfo())  # Displays contact info if there is a match
+                print(self.displayinfo())
         elif number == "2":
             if self.address == contact_detail:
                 print(self.displayinfo())
@@ -25,20 +32,26 @@ class Contact:
         else:
             print("INVALID CHOICE MADE")  # Captures any incorrect user inputs and returns an error message
 
-    def change_contact_details(self):  # Changes contact details while stopping any blank inputs
+    def change_contact_details(self):
+        """Changes contact details while stopping any blank inputs
+        """
         self.name = check_blank(input("ENTER A NAME FOR CONTACT: "))
         self.address = check_blank(input("ENTER AN ADDRESS FOR CONTACT: "))
         self.number = check_blank(input("ENTER A PHONE NUMBER FOR CONTACT: "))
         self.birthdate = check_blank(input("ENTER A DATE OF BIRTH FOR CONTACT(XX/XX/XXXX): "))
 
-    def save_contact(self):  # Opens text file containing contacts list and adds a new contact to the end of the list
+    def save_contact(self):
+        """Opens text file containing contacts list
+        and adds a new contact to the end of the list"""
         file = open("Contacts.txt", "a")
         contact_details = (self.name + ", " + self.address + ", " + self.number + ", " + self.birthdate + "\n")
         file.write(contact_details)
         file.close()
 
 
-def check_blank(uinput):  # Checks for a blank input and keep asking until an valid input is given
+def check_blank(uinput):
+    """Checks for a blank input and keep asking until an valid input is given
+    """
     while True:
         if uinput == "" or uinput == " ":
             uinput = input("INPUT CANT BE BLANK\n"
@@ -48,7 +61,9 @@ def check_blank(uinput):  # Checks for a blank input and keep asking until an va
     return uinput
 
 
-def get_contact_details():  # Opens contacts txt and saves contents. Removes and blank lines
+def get_contact_details():
+    """Opens contacts txt and saves contents.
+     Removes any blank lines"""
     f = open("Contacts.txt", "r")
     contacts = f.readlines()
     for contact in contacts:
@@ -58,13 +73,18 @@ def get_contact_details():  # Opens contacts txt and saves contents. Removes and
     return contacts
 
 
-def create_contact(contacts, num):  # Takes contacts list splits each contact up and creates a contact.
+def create_contact(contacts, num):
+    """Takes contacts list splits each contact up and creates a contact.
+    Returns c so it can be added to a contacts dictionary
+    """
     contact = contacts[num].split(", ")
     c = Contact(contact[0], contact[1], contact[2], contact[3])
-    return c  # Returns c so it can be added to a contacts dictionary
+    return c
 
 
-def edit_contact(contacts_list):  # Displays contacts and takes a user input of which to edit
+def edit_contact(contacts_list):
+    """Displays contacts and takes a user input of which to edit
+    """
     print("WHICH CONTACT WOULD YOU LIKE TO EDIT:")
     for i in contacts_list:
         print(i + " = " + contacts_list[i].displayinfo())
@@ -77,16 +97,20 @@ def edit_contact(contacts_list):  # Displays contacts and takes a user input of 
         print("INVALID CHOICE MADE")
 
 
-def add_new_contact():  # Creates a new contact, and stops blank entry's
+def add_new_contact():
+    """Creates a new contact, and stops blank entry's
+    Saves new contact to contacts.txt
+    """
     name = check_blank(input("New contacts name: "))
     address = check_blank(input("New contacts address: "))
     number = check_blank(input("New contacts number: "))
     dob = check_blank(input("New contacts date of birth(xx/xx/xxxx): "))
     new_contact = Contact(name, address, number, dob)
-    new_contact.save_contact()  # Saves new contact to contacts.txt
+    new_contact.save_contact()
 
 
-def update_contacts_list(contacts_list):  # Re-writes contacts.txt adding any edited contacts details
+def update_contacts_list(contacts_list):
+    """Re-writes contacts.txt adding any edited contacts details"""
     file = open("Contacts.txt", "w")
     file.write("")
     file.close()
