@@ -2,6 +2,7 @@ class Contact:
     def __init__(self, name, address, number, birthdate):
         """Constructor for Contact class
         """
+
         self.name = name
         self.address = address
         self.number = number
@@ -10,6 +11,7 @@ class Contact:
     def displayinfo(self):
         """Returns a formatted version of the client class
         """
+
         return f"{self.name}:" \
                f" address={self.address}, phone number={self.number}, birthdate={self.birthdate}"
 
@@ -17,6 +19,7 @@ class Contact:
         """Searches contact for completely matching details
         Displays contact info if there is a match
         """
+
         if number == "1":
             if self.name == contact_detail:
                 print(self.displayinfo())
@@ -35,6 +38,7 @@ class Contact:
     def change_contact_details(self):
         """Changes contact details while stopping any blank inputs
         """
+
         self.name = check_blank(input("ENTER A NAME FOR CONTACT: "))
         self.address = check_blank(input("ENTER AN ADDRESS FOR CONTACT: "))
         self.number = check_blank(input("ENTER A PHONE NUMBER FOR CONTACT: "))
@@ -42,7 +46,9 @@ class Contact:
 
     def save_contact(self):
         """Opens text file containing contacts list
-        and adds a new contact to the end of the list"""
+        and adds a new contact to the end of the list
+        """
+
         file = open("Contacts.txt", "a")
         contact_details = (self.name + ", " + self.address + ", " + self.number + ", " + self.birthdate + "\n")
         file.write(contact_details)
@@ -52,8 +58,9 @@ class Contact:
 def check_blank(uinput):
     """Checks for a blank input and keep asking until an valid input is given
     """
+
     while True:
-        if uinput == "" or uinput == " ":
+        if len(uinput.strip()) == 0:
             uinput = input("INPUT CANT BE BLANK\n"
                            "ENTER: ")
         else:
@@ -63,7 +70,9 @@ def check_blank(uinput):
 
 def get_contact_details():
     """Opens contacts txt and saves contents.
-     Removes any blank lines"""
+     Removes any blank lines
+     """
+
     f = open("Contacts.txt", "r")
     contacts = f.readlines()
     for contact in contacts:
@@ -77,6 +86,7 @@ def create_contact(contacts, num):
     """Takes contacts list splits each contact up and creates a contact.
     Returns c so it can be added to a contacts dictionary
     """
+
     contact = contacts[num].split(", ")
     c = Contact(contact[0], contact[1], contact[2], contact[3])
     return c
@@ -85,6 +95,7 @@ def create_contact(contacts, num):
 def edit_contact(contacts_list):
     """Displays contacts and takes a user input of which to edit
     """
+
     print("WHICH CONTACT WOULD YOU LIKE TO EDIT:")
     for i in contacts_list:
         print(i + " = " + contacts_list[i].displayinfo())
@@ -101,6 +112,7 @@ def add_new_contact():
     """Creates a new contact, and stops blank entry's
     Saves new contact to contacts.txt
     """
+
     name = check_blank(input("New contacts name: "))
     address = check_blank(input("New contacts address: "))
     number = check_blank(input("New contacts number: "))
@@ -110,7 +122,9 @@ def add_new_contact():
 
 
 def update_contacts_list(contacts_list):
-    """Re-writes contacts.txt adding any edited contacts details"""
+    """Re-writes contacts.txt adding any edited contacts details
+    """
+
     file = open("Contacts.txt", "w")
     file.write("")
     file.close()
