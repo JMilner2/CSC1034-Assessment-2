@@ -145,8 +145,8 @@ while True:  # Main loop, creates contacts and adds them to the contacts dic
                 print("\nCHOOSE FROM THE LIST FROM BELOW")
                 choice = input("WHAT DO YOU WANT TO SEARCH BY?:\n"
                                "1 = NAME\n"
-                               "2= ADDRESS\n"
-                               "3= PHONE NUMBER\n"
+                               "2 = ADDRESS\n"
+                               "3 = PHONE NUMBER\n"
                                "4 = DOB\n"
                                "\nCHOICE = ")
             else:
