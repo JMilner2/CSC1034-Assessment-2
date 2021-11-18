@@ -30,20 +30,20 @@ Name: Mark Milner, Address: 62 Hanthorpe Rd, Number: 01778570756, Date of birth:
 
 The user is presented this 5 choices, and they have to input either 1,2,3,4,5 depending on 
 what they want to do.
-###1 - Search function:
+##1 - Search function:
 The user is presented with a choice of what detail they want to search by (name,address,number,DOB)
 and must enter **"1"**,**"2"**,**"3"**,**"4"** accordingly. Then they are presented with an input field to enter the detail to search for. If any matches
 are found the contact and all its details are displayed. It searches for completely matching names so if there was a contact with
 the name **"Mark Milner"**, a search for **"mark"** or **"milner"** would return no results
 
-###2 - Display function:
+##2 - Display function:
 All contacts and their details are displayed
 
 So it would display
 
 Mark Milner: Address = 62 Hanthorpe Rd, Number = 01778570756, Date of birth = 01/10/1967
 
-###3 - Edit function:
+##3 - Edit function:
 The user is presented with a numbered list of all the contacts. They must enter a choice from the list (c0,c1,c2...) 
 depending on what contact they want to edit. Once a valid
 choice had been made they are given input fields where they can re-enter the
@@ -55,9 +55,9 @@ So if they wanted to edit the name of **"Mark Milner"** to **"Mike Milner"**, th
 then enter **"Mike Milner"** in the
 name field and re-enter the rest of the contact details the same as they were.
 To edit the number
-###4 - Add function
+##4 - Add function
 The user is presented with different input fields for the new contacts name, address, number and DOB.
 The new contact is then saved to the .txt file.
-###5 - Save and Exit
+##5 - Save and Exit
 The contacts list is saved to the .txt file and the application stop running
 
