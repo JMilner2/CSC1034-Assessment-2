@@ -54,7 +54,7 @@ So if they wanted to edit the name of **"Mark Milner"** to **"Mike Milner"**, th
 **"c0"** (c0 because Mark Milner is the only contact in the contacts list in this example) 
 then enter **"Mike Milner"** in the
 name field and re-enter the rest of the contact details the same as they were.
-To edit the number
+To edit the contacts number they would do the same but leave the name the same and enter a new number
 
 ##4 - Add function:
 The user is presented with different input fields for the new contacts name, address, number and DOB.
