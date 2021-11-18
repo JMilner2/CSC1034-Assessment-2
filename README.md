@@ -55,9 +55,11 @@ So if they wanted to edit the name of **"Mark Milner"** to **"Mike Milner"**, th
 then enter **"Mike Milner"** in the
 name field and re-enter the rest of the contact details the same as they were.
 To edit the number
+
 ##4 - Add function
 The user is presented with different input fields for the new contacts name, address, number and DOB.
 The new contact is then saved to the .txt file.
+
 ##5 - Save and Exit
 The contacts list is saved to the .txt file and the application stop running
 
